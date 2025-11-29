@@ -43,8 +43,8 @@ python code/main.py --input ./input/Sugar.pdf --output ./output/
 ### 技術選型
 
 - **PDF 轉圖片**：Python + pdf2image
-- **AI Vision API**：OpenAI `gpt-4.1-mini`（成本低、足夠辨識鼓譜符號；如辨識不準再升級 `gpt-4.1`）
-- **輸出 JSON**：結構化資料，穩定度高於純文字
+- **AI Vision API**：Google Gemini 3 Pro Preview（比 OpenAI GPT-4.1 更穩定、準確）
+- **輸出 JSON**：結構化資料，穩定度高於純文字（Gemini 支援強制 JSON 輸出）
 - **規則轉換**：依據老師講解風格，將 JSON 轉成口語講解
 
 ## 可行性驗證結果
@@ -89,13 +89,17 @@ drum/
 
 產出：`code/main.py`（PDF 轉圖片功能）
 
-## 步驟 2：樂譜解析 Prompt + 程式
+## 步驟 2：樂譜解析 Prompt + 程式 ✅
 
 撰寫 prompt 讓 AI Vision 看圖輸出 JSON，並實作呼叫 API 的程式：
 - 定義 JSON schema（每小節打擊內容、段落標記、特殊標記）
-- 呼叫 OpenAI Responses API（model: `gpt-4.1-mini`）
+- 使用 Gemini 3 Pro Preview（比 OpenAI GPT-4.1 更穩定）
 
-用範例樂譜測試，對照老師逐字稿驗證解析結果。
+測試結果：
+- ✅ 休息小節判斷正確
+- ✅ has_hihat 判斷正確
+- ⚠️ 第 3 拍：AI 解析為 kick，老師口訣為「嗯」（空拍）
+  - 待確認：可能是「樂譜細節 vs 老師簡化口訣」的差異，需請老師確認
 
 產出：`code/parse_drum_sheet_prompt.md`、`code/main.py`（Vision 解析功能）
 
