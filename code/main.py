@@ -39,7 +39,7 @@ def load_prompt() -> str:
         return f.read()
 
 
-def parse_drum_sheet(image_paths: list[Path], output_dir: Path, model: str = "gemini-2.5-flash") -> dict:
+def parse_drum_sheet(image_paths: list[Path], output_dir: Path, model: str = "gemini-3-pro-preview") -> dict:
     """使用 Gemini Vision API 解析鼓譜圖片"""
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
     prompt = load_prompt()
