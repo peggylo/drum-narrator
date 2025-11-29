@@ -1,9 +1,8 @@
 # PDF 轉圖片
 pdf2image>=1.16.0
 
-# OpenAI API（Vision 解析用）
-openai>=1.0.0
+# Gemini API（Vision 解析用）
+google-genai>=1.0.0
 
 # 環境變數
 python-dotenv>=1.0.0
-

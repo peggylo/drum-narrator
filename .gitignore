@@ -52,3 +52,7 @@ env/
 # 範例資料（音訊、PDF 等大型檔案）
 sample/
 
+# 輸入輸出資料夾
+input/
+output/
+
